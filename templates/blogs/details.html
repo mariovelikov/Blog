@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block site_content %}
+    {{ blog.name }}    <a href="{% url 'delete blog' blog.id %}">Delete Blog</a>
+    {% if post %}
+        <h2 class='text-center'>All post's</h2>
+        <div class="row">
+            <div class="row">
+                {% for post in post %}
+                    {{ post.title }}
+                    <div class="col-lg-4">
+                        <div class="card" style="width: 18rem;">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ post.title }} </h5>
+                                <p class="card-text">{{ post.text }}</p>
+                                <p class="card-text"><strong>Owner: {{ post.user.username }}</strong></p>
+{#                                <a href="{% url 'pet details or comment' pet.id %}" class="btn btn-primary">See#}
+{#                                    details</a>#}
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    {% else %}
+        <div class="text-center">
+            <h2>Don't have post's ! </h2>
+            <a href="{% url 'create post' %}" class="btn btn-success">Create post</a>
+        </div>
+    {% endif %}
+{% endblock %}

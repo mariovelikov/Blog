@@ -1,0 +1,33 @@
+.list-horizontal .list-item {
+    display: inline-block;
+}
+
+.site-nav {
+    background-color: black;
+}
+
+.site-nav .list-item {
+    padding: 15px 5px;
+}
+
+.site-nav .list-item:first-of-type {
+    margin-left: 10px;
+}
+
+.child {
+    height: 400px;
+    width: 800px;
+    position: absolute;
+    top: 35%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/*.box-blog {*/
+/*    height: 400px;*/
+/*    width: 800px;*/
+/*    position: absolute;*/
+/*    top: 35%;*/
+/*    left: 50%;*/
+/*    transform: translate(-50%, -50%);*/
+/*}*/

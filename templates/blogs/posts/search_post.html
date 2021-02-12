@@ -1,0 +1,8 @@
+{% if post %}
+    <center> Search Result Found</center>
+    {% for obj in post %}
+        <h2><a>{{ blog.title }}</a></h2>
+    {% endfor %}
+{% else %}
+        <center> Search Result Not Found Blog </center>
+{% endif %}
