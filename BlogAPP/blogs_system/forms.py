@@ -8,6 +8,7 @@ class CreationForm(ModelForm):
     class Meta:
         model = Blog
         fields = '__all__'
+        exclude = ('user',)
 
 
 class CreateBlogForm(form_mixins.BoostrapMixin, CreationForm):
@@ -20,6 +21,7 @@ class CreatePostForm(ModelForm):
     class Meta:
         model = Post
         fields = '__all__'
+        exclude = ('user', 'blog')
 
 
 class CreatePost(form_mixins.BoostrapMixin, CreatePostForm):

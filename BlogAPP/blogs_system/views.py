@@ -1,8 +1,7 @@
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import DetailView, CreateView, DeleteView, ListView
-from django.contrib.auth import mixins as auth_mixins
-
+from django.contrib.auth import mixins as auth_mixins, get_user_model
 from BlogAPP.blogs_system.forms import CreateBlogForm, CreatePostForm
 from BlogAPP.blogs_system.models import Blog, Post
 
@@ -40,9 +39,14 @@ class CreateBlogView(auth_mixins.LoginRequiredMixin, CreateView):
     form_class = CreateBlogForm
     model = Blog
     template_name = 'blogs/create.html'
+    success_url = reverse_lazy('homepage')
 
-    def get_success_url(self):
-        return reverse_lazy('homepage')
+    def form_valid(self, form):
+        valid = super().form_valid(form)
+        todo = form.save()
+        todo.user = self.request.user.profile
+        todo.save()
+        return valid
 
 
 class DeleteBlog(auth_mixins.LoginRequiredMixin, DeleteView):
@@ -57,10 +61,20 @@ class CreatePost(auth_mixins.LoginRequiredMixin, CreateView):
     template_name = 'blogs/posts/create_post.html'
     form_class = CreatePostForm
     model = Post
+    success_url = 'homepage'
 
-    def get_success_url(self):
-        return reverse_lazy('blog details')
+    def form_valid(self, form):
+        valid = super().form_valid(form)
+        post = form.save()
+        post.user = self.request.user.profile
+        post.blog = self.object()
+        post.save()
+        return valid
 
 
 class DeletePost(auth_mixins.LoginRequiredMixin, DeleteView):
-    pass
+    template_name = 'blogs/delete_blog.html'
+    model = Post
+
+    def get_success_url(self):
+        return reverse_lazy('homepage')

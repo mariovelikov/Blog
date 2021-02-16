@@ -29,4 +29,3 @@ class BlogAdmin(admin.ModelAdmin):
 admin.site.unregister(UserModel)
 admin.site.register(get_user_model(), UserAdmin)
 admin.site.register(Profile, BlogAdmin)
-
