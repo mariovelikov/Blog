@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views.generic import DetailView, CreateView, DeleteView, ListView
 from django.contrib.auth import mixins as auth_mixins, get_user_model
@@ -21,13 +21,13 @@ class BlogDetailsView(DetailView):
         return context
 
 
-def search_function(request):
-    if request.method == 'GET':
-        search = request.GET.get('search')
-        context = {
-            'post': Blog.objects.all().filter(name=search),
-        }
-        return render(request, 'blogs/posts/search_post.html', context)
+# def search_function(request):
+#     if request.method == 'GET':
+#         search = request.GET.get('search')
+#         context = {
+#             'post': Blog.objects.all().filter(name=search),
+#         }
+#         return render(request, 'blogs/posts/search_post.html', context)
 
 
 class PostListView(ListView):
@@ -54,20 +54,19 @@ class DeleteBlog(auth_mixins.LoginRequiredMixin, DeleteView):
     model = Blog
 
     def get_success_url(self):
-        return reverse_lazy('blog details')
+        return reverse_lazy('homepage')
 
 
 class CreatePost(auth_mixins.LoginRequiredMixin, CreateView):
     template_name = 'blogs/posts/create_post.html'
     form_class = CreatePostForm
     model = Post
-    success_url = 'homepage'
+    success_url = '/'
 
     def form_valid(self, form):
         valid = super().form_valid(form)
         post = form.save()
         post.user = self.request.user.profile
-        post.blog = self.object()
         post.save()
         return valid
 

@@ -3,38 +3,38 @@
         <ul class="list-horizontal">
             {% if user.is_authenticated %}
                 <li class="list-item">
-                    <a href="{% url 'homepage' %}">
+                    <a class="navbar-brand" href="{% url 'homepage' %}">
                         Home
                     </a>
                 </li>
                 <li class="list-item">
-                    <a href="{% url 'create blog' %}">
+                    <a class="navbar-brand" href="{% url 'create blog' %}">
                         Add Blog
                     </a>
                 </li>
                 <li class="list-item">
-                    <a href="{% url 'user profile' %}">
+                    <a class="navbar-brand" href="{% url 'user profile' %}">
                         Hello, {{ user.username }}
                     </a>
                 </li>
                 <li class="list-item">
-                    <a href="{% url 'sign out' %}">
+                    <a class="navbar-brand" href="{% url 'sign out' %}">
                         Sign out
                     </a>
                 </li>
             {% else %}
                 <li class="list-item">
-                    <a href="{% url 'homepage' %}">
+                    <a class="navbar-brand" href="{% url 'homepage' %}">
                         Home
                     </a>
                 </li>
                 <li class="list-item">
-                    <a href="{% url 'sign in' %}">
+                    <a class="navbar-brand" href="{% url 'sign in' %}">
                         Sign in
                     </a>
                 </li>
                 <li class="list-item">
-                    <a href="{% url 'sign up' %}">
+                    <a class="navbar-brand" href="{% url 'sign up' %}">
                         Sign up
                     </a>
                 </li>

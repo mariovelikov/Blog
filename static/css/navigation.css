@@ -1,0 +1,15 @@
+.list-horizontal .list-item {
+    display: inline-block;
+}
+
+.site-nav {
+    background-color: black;
+}
+
+.site-nav .list-item {
+    padding: 15px 5px;
+}
+
+.site-nav .list-item:first-of-type {
+    margin-left: 10px;
+}

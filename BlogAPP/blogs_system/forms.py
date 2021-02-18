@@ -21,7 +21,7 @@ class CreatePostForm(ModelForm):
     class Meta:
         model = Post
         fields = '__all__'
-        exclude = ('user', 'blog')
+        exclude = ('user',)
 
 
 class CreatePost(form_mixins.BoostrapMixin, CreatePostForm):

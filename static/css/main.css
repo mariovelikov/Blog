@@ -1,17 +1,5 @@
-.list-horizontal .list-item {
-    display: inline-block;
-}
-
-.site-nav {
-    background-color: black;
-}
-
-.site-nav .list-item {
-    padding: 15px 5px;
-}
-
-.site-nav .list-item:first-of-type {
-    margin-left: 10px;
+body{
+    background-color: rgb(36, 33, 33);
 }
 
 .child {
@@ -23,11 +11,17 @@
     transform: translate(-50%, -50%);
 }
 
-/*.box-blog {*/
-/*    height: 400px;*/
-/*    width: 800px;*/
-/*    position: absolute;*/
-/*    top: 35%;*/
-/*    left: 50%;*/
-/*    transform: translate(-50%, -50%);*/
-/*}*/
+.container{
+    border: solid #3B3E49 2px;
+    background-color: #A19E9E
+}
+.col-sm-3{
+    width: 300px;
+    margin: 10px
+}
+.card{
+    width: 18rem;
+}
+.card-body{
+    background-color: #3B3E49
+}
