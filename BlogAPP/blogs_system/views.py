@@ -1,7 +1,6 @@
-from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views.generic import DetailView, CreateView, DeleteView, ListView
-from django.contrib.auth import mixins as auth_mixins, get_user_model
+from django.contrib.auth import mixins as auth_mixins
 from BlogAPP.blogs_system.forms import CreateBlogForm, CreatePostForm
 from BlogAPP.blogs_system.models import Blog, Post
 
@@ -16,8 +15,11 @@ class BlogDetailsView(DetailView):
     model = Blog
 
     def get_context_data(self, **kwargs):
+        blog = Blog.objects.get(pk=self.kwargs.get('pk'))
+
         context = super().get_context_data(**kwargs)
         context['post'] = self.get_object().post_set.all()
+        context['can_delete'] = blog.user == self.request.user.profile
         return context
 
 
@@ -52,6 +54,12 @@ class CreateBlogView(auth_mixins.LoginRequiredMixin, CreateView):
 class DeleteBlog(auth_mixins.LoginRequiredMixin, DeleteView):
     template_name = 'blogs/delete_blog.html'
     model = Blog
+
+    def post(self, request, *args, **kwargs):
+        blog = Blog.objects.get(pk=self.kwargs.get('pk'))
+
+        context = super().get_context_data(**kwargs)
+        context['can_delete'] = blog.user == self.request.user.profile
 
     def get_success_url(self):
         return reverse_lazy('homepage')
