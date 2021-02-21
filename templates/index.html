@@ -7,7 +7,7 @@
                 <div class="col-sm-3">
                     <div class="card">
                         <div class="card-body">
-                            <h5 class="card-text">{{ blog.user }}</h5>
+                            <h5 class="card-text">Owner: {{ blog.user }}</h5>
                             <h5 class="card-text">{{ blog.name }}</h5>
                             <a href="{% url 'blog details' blog.id %}">See Details </a>
                         </div>

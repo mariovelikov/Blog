@@ -1,3 +1,5 @@
+from django.http import HttpResponseRedirect
+from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.views.generic import DetailView, CreateView, DeleteView, ListView
 from django.contrib.auth import mixins as auth_mixins
@@ -23,20 +25,6 @@ class BlogDetailsView(DetailView):
         return context
 
 
-# def search_function(request):
-#     if request.method == 'GET':
-#         search = request.GET.get('search')
-#         context = {
-#             'post': Blog.objects.all().filter(name=search),
-#         }
-#         return render(request, 'blogs/posts/search_post.html', context)
-
-
-class PostListView(ListView):
-    template_name = 'blogs/details.html'
-    model = Post
-
-
 class CreateBlogView(auth_mixins.LoginRequiredMixin, CreateView):
     form_class = CreateBlogForm
     model = Blog
@@ -51,18 +39,26 @@ class CreateBlogView(auth_mixins.LoginRequiredMixin, CreateView):
         return valid
 
 
+class PostListView(ListView):
+    template_name = 'blogs/details.html'
+    model = Post
+
+
 class DeleteBlog(auth_mixins.LoginRequiredMixin, DeleteView):
     template_name = 'blogs/delete_blog.html'
     model = Blog
 
-    def post(self, request, *args, **kwargs):
+    def delete(self, request, *args, **kwargs):
         blog = Blog.objects.get(pk=self.kwargs.get('pk'))
+        if blog.user != request.user.profile:
+            return HttpResponseRedirect('/')
+        else:
+            self.get_object().delete()
+            return redirect('homepage')
 
-        context = super().get_context_data(**kwargs)
-        context['can_delete'] = blog.user == self.request.user.profile
 
-    def get_success_url(self):
-        return reverse_lazy('homepage')
+def get_success_url(self):
+    return reverse_lazy('homepage')
 
 
 class CreatePost(auth_mixins.LoginRequiredMixin, CreateView):
