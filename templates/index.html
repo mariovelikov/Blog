@@ -7,9 +7,13 @@
                 <div class="col-sm-3">
                     <div class="card">
                         <div class="card-body">
-                            <h5 class="card-text">Owner: <a href="{% url 'user profile' blog.user.user_id %}"  >{{ blog.user }}</a> </h5>
-                            <h5 class="card-text">{{ blog.name }}</h5>
-                            <a href="{% url 'blog details' blog.id %}">See Details </a>
+
+                            <h5 class="card-text"><a style="text-decoration: none; color: red"
+                                                                        href="{% url 'blog details' blog.id %}"> {{ blog }}</a>
+                            </h5>
+                            <h5 class="card-text" style="text-decoration: none">Owner: <a
+                                    style="color: darkseagreen; text-decoration: none"
+                                    href="{% url 'user profile' blog.user.user_id %}">{{ blog.user }}</a></h5>
                         </div>
                     </div>
                 </div>

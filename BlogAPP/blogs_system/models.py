@@ -8,6 +8,7 @@ UserModel = get_user_model()
 class Blog(models.Model):
     slug = models.SlugField(editable=False)
     name = models.CharField(max_length=30)
+    picture = models.ImageField(upload_to='BlogsImage', blank=False)
     description = models.TextField()
     user = models.ForeignKey(Profile, on_delete=models.CASCADE, null=True)
 
@@ -17,6 +18,7 @@ class Blog(models.Model):
 
 class Post(models.Model):
     title = models.CharField(max_length=30)
+    picture = models.ImageField(upload_to='PostsImage', blank=False)
     text = models.TextField()
     blog = models.ForeignKey(Blog, on_delete=models.CASCADE, null=True)
     user = models.ForeignKey(Profile, on_delete=models.CASCADE, null=True)
