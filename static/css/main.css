@@ -1,4 +1,4 @@
-body{
+body {
     background-color: rgb(36, 33, 33);
     color: chartreuse;
 }
@@ -12,18 +12,26 @@ body{
     transform: translate(-50%, -50%);
 }
 
-.container{
+.container {
     border: solid #3B3E49 2px;
     background-color: #A19E9E
 }
-.col-sm-3{
+
+.col-sm-3 {
     width: 300px;
     margin: 10px
 }
-.card{
+
+.card {
     width: 18rem;
 }
-.card-body{
+
+.card-body {
     color: #D7D7D7;
     background-color: #3B3E49
+}
+
+.image {
+    width: 250px;
+    height: 155px;
 }

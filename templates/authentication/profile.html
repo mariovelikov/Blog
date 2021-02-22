@@ -5,7 +5,7 @@
         <div class="text-center">
             <h1>{{ profile.username }}'s Profile !</h1>
             {% if profile.profile_picture %}
-                <img class="" src="{{ profile.profile_picture }}" alt="Generic placeholder image"
+                <img class="" src="{{ profile.profile_picture.url }}" alt="Generic placeholder image"
                      width="140px"
                      height="140px">
             {% else %}
