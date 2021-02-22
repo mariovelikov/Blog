@@ -57,10 +57,6 @@ class DeleteBlog(auth_mixins.LoginRequiredMixin, DeleteView):
             return redirect('homepage')
 
 
-def get_success_url(self):
-    return reverse_lazy('homepage')
-
-
 class CreatePost(auth_mixins.LoginRequiredMixin, CreateView):
     template_name = 'blogs/posts/create_post.html'
     form_class = CreatePostForm

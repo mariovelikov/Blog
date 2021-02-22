@@ -3,9 +3,7 @@ from django.urls import reverse_lazy
 from django.views import generic as views
 from django.contrib.auth import views as auth_views, login
 from BlogAPP.authentication.forms import *
-from BlogAPP.authentication.models import Profile
-
-from BlogAPP.blogs_system.models import Blog
+from BlogAPP.blogs_system.models import *
 
 
 class UserProfile(views.UpdateView):
@@ -24,6 +22,7 @@ class UserProfile(views.UpdateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['profile'] = self.get_object().user
+        context['current_profile'] = self.get_object().user != self.request.user
         context['blog'] = self.get_object().blog_set.all()
         return context
 
