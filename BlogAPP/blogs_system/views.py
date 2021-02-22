@@ -50,6 +50,11 @@ class DeleteBlog(auth_mixins.LoginRequiredMixin, DeleteView):
 
     def delete(self, request, *args, **kwargs):
         blog = Blog.objects.get(pk=self.kwargs.get('pk'))
+        image = blog.picture
+
+        if image:
+            image.delete()
+
         if blog.user != request.user.profile:
             return HttpResponseRedirect('/')
         else:
