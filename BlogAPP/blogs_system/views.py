@@ -56,10 +56,6 @@ class DeleteBlog(auth_mixins.LoginRequiredMixin, DeleteView):
             return HttpResponseRedirect('/')
         else:
             image.delete()
-
-        if blog.user != request.user.profile:
-            return HttpResponseRedirect('/')
-        else:
             self.get_object().delete()
             return redirect('homepage')
 
