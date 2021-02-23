@@ -14,7 +14,11 @@
                                     style="color: darkseagreen; text-decoration: none"
                                     href="{% url 'user profile' blog.user.user_id %}">{{ blog.user }}</a></h5>
                         </div>
-                        <img src="{{ blog.picture.url }}" alt="Image" class="card-img-top">
+                        {% if blog.picture %}
+                            <img src="{{ blog.picture.url }}" alt="Image" class="card-img-top">
+                        {% else %}
+                            NOT PICTURE :)
+                        {% endif %}
                     </div>
                 </div>
             {% endfor %}

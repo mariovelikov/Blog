@@ -2,8 +2,9 @@
 
 {% block site_content %}
         <div class="child">
-            <form method="post" action="{% url 'create blog' %}">
+            <form method="POST" action="{% url 'create blog' %}" enctype="multipart/form-data">
                 {% csrf_token %}
+                {{ form.media }}
                 {{ form }}
                 <button class="btn btn-outline-warning">Create</button>
             </form>
