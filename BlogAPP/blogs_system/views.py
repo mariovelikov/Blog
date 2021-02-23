@@ -7,7 +7,7 @@ from BlogAPP.blogs_system.forms import CreateBlogForm, CreatePostForm
 from BlogAPP.blogs_system.models import Blog, Post
 
 
-class LandingPage(ListView):
+class LandingPage(auth_mixins.LoginRequiredMixin, ListView):
     template_name = 'index.html'
     model = Blog
 
